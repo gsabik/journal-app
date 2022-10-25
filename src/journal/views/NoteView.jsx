@@ -1,6 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { 
 	Alert,
 	Grid, 
@@ -9,11 +8,10 @@ import {
     TextField, 
     Typography, 
 } from "@mui/material";
-import { SaveOutlined } from "@mui/icons-material";
-
+import { SaveOutlined, UploadFileOutlined } from "@mui/icons-material";
 import { useForm } from "../../hooks/useForm";
 import { readNote } from "../../redux/journal/journalSlice";
-import { startOnSaveNote } from "../../redux/journal/thunks";
+import { startOnSaveNote, startUploadingFiles } from "../../redux/journal/thunks";
 import ImageGallery from "../components/ImageGallery";
 
 const NoteView = () => {
@@ -29,14 +27,23 @@ const NoteView = () => {
 		dispatch(startOnSaveNote());
 	}
 
+	const onFileInputChange = ({ target }) => {
+		if (target.files === 0) return;
+
+		dispatch(startUploadingFiles(target.files));
+	}
+
+	// Ref to my input type file
+	const fileInputRef = useRef();
+
 	const dateString = useMemo(() => {
 		const newDate = new Date(date);
 		return newDate.toUTCString();
 	}, [date]);
 
-	// If modify the fields of my note, i render my component
+	// If modify a note, render my component
 	useEffect(() => {
-		dispatch(readNote(formState))
+		dispatch(readNote(formState));
 	}, [formState]); 
 
 	// If modify a note, setSavedMessageAlert on true
@@ -54,6 +61,20 @@ const NoteView = () => {
                 justifyContent="space-between"
             >
                 <Typography variant="h4">{dateString}</Typography>
+				<input
+					multiple
+					onChange={onFileInputChange}
+					type="file"
+					ref={fileInputRef}
+					style={{
+						display: "none"
+					}}
+				/>
+				<IconButton
+					onClick={() => fileInputRef.current.click()}
+				>
+					<UploadFileOutlined fontSize="large"/>
+				</IconButton>
                 <IconButton
 					disabled={isSaving}
 					onClick={onSaveNote}

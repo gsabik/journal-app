@@ -1,8 +1,8 @@
 import { collection, doc, setDoc } from "firebase/firestore";
 import { firebaseDB } from "../../firebase/config";
-
+import { addNote, readNote, savingNote, setImagesToActiveNote, setNotes, updateNote } from "../journal/journalSlice";
 import { loadNotes } from "../../helpers/loadNotes";
-import { addNote, readNote, savingNote, setNotes, updateNote } from "../journal/journalSlice";
+import { fileUpload } from "../../helpers/fileUpload";
 
 export const startCreateNote = () => {
 	return async(dispatch, getState) => {
@@ -64,5 +64,23 @@ export const startOnSaveNote = () => {
 
 		// Update my local notes, not my firebase notes
 		dispatch(updateNote(activeNote));
+	}
+}
+
+export const startUploadingFiles = (files = []) => {
+	return async(dispatch) => {
+		dispatch(savingNote());
+
+		const fileUploadPromises = [];
+
+		// For each file I will execute a promise
+		for (const file of files) {
+			fileUploadPromises.push(fileUpload(file));
+		}
+
+		// Return a single promise with the Promise.all method
+		const imagesUrls = await Promise.all(fileUploadPromises);
+
+		dispatch(setImagesToActiveNote(imagesUrls));
 	}
 }

@@ -1,5 +1,6 @@
+import { useDispatch } from "react-redux";
 import { 
-    AppBar, 
+	AppBar, 
     Button, 
     IconButton, 
     Stack, 
@@ -7,7 +8,6 @@ import {
     Typography 
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { useDispatch } from "react-redux";
 import { startLogout } from "../../redux/auth/thunks";
 
 const NavBar = ({ drawerWidth }) => {
