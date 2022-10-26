@@ -9,7 +9,7 @@ const JournalApp = () => {
                 <AppRouter/>
             </BrowserRouter>
         </AppTheme>
-    )
+    );
 }
 
 export default JournalApp

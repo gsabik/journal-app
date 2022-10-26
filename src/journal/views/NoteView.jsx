@@ -8,10 +8,10 @@ import {
     TextField, 
     Typography, 
 } from "@mui/material";
-import { SaveOutlined, UploadFileOutlined } from "@mui/icons-material";
+import { DeleteOutline, SaveOutlined, UploadFileOutlined } from "@mui/icons-material";
 import { useForm } from "../../hooks/useForm";
 import { readNote } from "../../redux/journal/journalSlice";
-import { startOnSaveNote, startUploadingFiles } from "../../redux/journal/thunks";
+import { startOnSaveNote, startUploadingFiles, startDeleteNote } from "../../redux/journal/thunks";
 import ImageGallery from "../components/ImageGallery";
 
 const NoteView = () => {
@@ -31,6 +31,10 @@ const NoteView = () => {
 		if (target.files === 0) return;
 
 		dispatch(startUploadingFiles(target.files));
+	}
+
+	const onDeleteNote = () => {
+		dispatch(startDeleteNote());
 	}
 
 	// Ref to my input type file
@@ -70,6 +74,11 @@ const NoteView = () => {
 						display: "none"
 					}}
 				/>
+				<IconButton
+					onClick={onDeleteNote}
+				>
+					<DeleteOutline fontSize="large"/>
+				</IconButton>
 				<IconButton
 					onClick={() => fileInputRef.current.click()}
 				>

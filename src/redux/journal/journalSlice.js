@@ -22,7 +22,8 @@ export const journalSlice = createSlice({
 			state.active = null
 		},
 		deleteNote: (state, action) => {
-
+			state.active = null;
+			state.notes = state.notes.filter(note => note.id !== action.payload);
 		}, 
 		readNote: (state, action) => {
 			state.active = action.payload;
@@ -49,10 +50,9 @@ export const journalSlice = createSlice({
 				return note;
 			});
 
-			// Update message
 			state.savedMessage = `${action.payload.title} successfully updated!`
 
-		},
+		}
 	}
 });
 
