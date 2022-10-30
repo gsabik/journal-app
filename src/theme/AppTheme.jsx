@@ -1,8 +1,8 @@
-import { ThemeProvider } from '@emotion/react';
-import { CssBaseline } from '@mui/material';
-import { theme } from './theme';
+import { ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
+import { theme } from "./theme";
 
-const AppTheme = ({ children }) => {
+export const AppTheme = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
@@ -10,5 +10,3 @@ const AppTheme = ({ children }) => {
         </ThemeProvider>
     );
 }
-
-export default AppTheme

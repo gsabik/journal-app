@@ -31,16 +31,23 @@ const SideBar = ({ drawerWidth = 240 }) => {
                     "& .MuiDrawer-paper": {boxSizing: "border-box", width: drawerWidth},
                 }}
             >
-                <Toolbar sx={{justifyContent: "center"}}>
-                    <Typography variant="h6" noWrap component="div">{displayName}</Typography>
+                <Toolbar sx={{
+					justifyContent: "center"
+					}}
+				>
+                	<Typography 
+						component="div"
+						noWrap 
+						variant="h6" 
+					>{displayName}</Typography>
                 </Toolbar>
                     <Divider/>
                     <List>
                         {
                             notes.map(note => (
                                 <SideBarItem
-								key={note.id}
-								{...note}	
+									key={note.id}
+									{...note}	
 								/>
                             ))
                         }

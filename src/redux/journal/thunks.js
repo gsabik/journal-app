@@ -13,7 +13,7 @@ export const startCreateNote = () => {
 		const { uid } = getState().auth;
 
 		const newNote = {
-			date: new Date().getTime(),
+			date: new Date().toLocaleString(),
 			title: "",
 			body: "",
 		}

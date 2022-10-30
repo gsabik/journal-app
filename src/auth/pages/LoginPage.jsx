@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, Button, Stack, TextField } from "@mui/material";
+import { Alert, Button, Stack, TextField, Typography } from "@mui/material";
 import { startGoogleSignIn, startLoginWithUser } from "../../redux/auth/thunks";
 import { useForm } from "../../hooks/useForm";
 import AuthLayout from "../layout/AuthLayout";
@@ -45,7 +45,6 @@ const LoginPage = () => {
                         onChange={onInputChange}
                         type="email"
                         value={email}
-                        variant="filled"
                     />
                     <TextField
                         label="Password"
@@ -53,7 +52,6 @@ const LoginPage = () => {
                         onChange={onInputChange}
                         type="password"
                         value={password}
-                        variant="filled"
                     />
                 </Stack>
                 <Stack
@@ -63,9 +61,7 @@ const LoginPage = () => {
                     <Alert severity="error">{errorMessage}</Alert>
                 </Stack>
                 <Stack
-                    justifyContent="space-around"
                     spacing={2}
-                    direction="row"
                 >
                     <Button
                         disabled={isAuthenticating}
@@ -78,16 +74,17 @@ const LoginPage = () => {
                         fullWidth
                         onClick={onGoogleSignIn}
                         variant="contained"
-                    >Google</Button>
-                </Stack>
-                <Stack
-                    direction="row"
-                    justifyContent="flex-end"
-                    mt={2}
-                >
-                    <Link to="/auth/register">Create account</Link>
+                    >Continue with Google</Button>
                 </Stack>
             </form>
+			<Stack
+				direction="row"
+				justifyContent="space-around"
+				mt={2}
+			>
+				<Typography color="gray">Do you not have account?</Typography>
+				<Link to="/auth/register">Create account</Link>
+			</Stack>
         </AuthLayout>
     );
 }

@@ -3,10 +3,9 @@ import {
     ListItemButton, 
     ListItemIcon, 
     ListItemText, 
-    Stack
 } from "@mui/material";
-import { TurnedInNot } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
+import { Bookmark } from "@mui/icons-material";
 import { readNote } from "../../redux/journal/journalSlice";
 
 const SideBarItem = ({ id, title, body, date, imageUrls = []}) => {
@@ -22,16 +21,11 @@ const SideBarItem = ({ id, title, body, date, imageUrls = []}) => {
 			key={id}
 			onClick={setActiveNote} 
 		>
-			<ListItemButton>
+			<ListItemButton alignItems="center">
 				<ListItemIcon>
-					<TurnedInNot/>
+					<Bookmark/>
 				</ListItemIcon>
-				<Stack
-					direction="column"
-				>
-					<ListItemText primary={title}/>
-					<ListItemText secondary={body}/>
-				</Stack>
+				<ListItemText primary={title}/>
 			</ListItemButton>
 		</ListItem>
 	);

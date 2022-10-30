@@ -5,10 +5,11 @@ import {
 	Grid, 
     IconButton, 
     Snackbar, 
+    Stack, 
     TextField, 
     Typography, 
 } from "@mui/material";
-import { DeleteOutline, SaveOutlined, UploadFileOutlined } from "@mui/icons-material";
+import { Delete, Save, Upload } from "@mui/icons-material";
 import { useForm } from "../../hooks/useForm";
 import { readNote } from "../../redux/journal/journalSlice";
 import { startOnSaveNote, startUploadingFiles, startDeleteNote } from "../../redux/journal/thunks";
@@ -40,10 +41,10 @@ const NoteView = () => {
 	// Ref to my input type file
 	const fileInputRef = useRef();
 
-	const dateString = useMemo(() => {
-		const newDate = new Date(date);
-		return newDate.toUTCString();
-	}, [date]);
+	// const dateString = useMemo(() => {
+	// 	const newDate = new Date(date);
+	// 	return newDate.toUTCString();
+	// }, [date]);
 
 	// If modify a note, render my component
 	useEffect(() => {
@@ -58,79 +59,88 @@ const NoteView = () => {
 	}, [savedMessage]);
 
     return (
-        <>
-            <Grid
-                container
-                direction="row"
-                justifyContent="space-between"
-            >
-                <Typography variant="h4">{dateString}</Typography>
-				<input
-					multiple
-					onChange={onFileInputChange}
-					type="file"
-					ref={fileInputRef}
-					style={{
-						display: "none"
-					}}
-				/>
-				<IconButton
-					onClick={onDeleteNote}
+		<Grid
+			container
+			direction="column"
+		>
+			<Stack
+				direction="row"
+				justifyContent="space-between"
+				pb={2}
+			>
+				<Typography variant="h5">{date}</Typography>
+				<Stack
+					direction="row"
 				>
-					<DeleteOutline fontSize="large"/>
-				</IconButton>
-				<IconButton
-					onClick={() => fileInputRef.current.click()}
-				>
-					<UploadFileOutlined fontSize="large"/>
-				</IconButton>
-                <IconButton
-					disabled={isSaving}
-					onClick={onSaveNote}
-				>
-                    <SaveOutlined fontSize="large"/>
-                </IconButton>
-                <TextField
-                    fullWidth
-                    label="Title"
+					<input
+						multiple
+						onChange={onFileInputChange}
+						type="file"
+						ref={fileInputRef}
+						style={{
+							display: "none"
+						}}
+					/>
+					<IconButton
+						onClick={() => fileInputRef.current.click()}
+					>
+						<Upload/>
+					</IconButton>
+					<IconButton
+						onClick={onDeleteNote}
+					>
+						<Delete/>
+					</IconButton>
+					<IconButton
+						disabled={isSaving}
+						onClick={onSaveNote}
+					>
+						<Save/>
+					</IconButton>
+				</Stack>
+			</Stack>
+			<Stack
+				pb={2}
+			>
+				<TextField
+					fullWidth
+					label="Title"
 					name="title"
 					onChange={onInputChange}
-                    sx={{
+					sx={{
 						mb: 2
-                    }}
+					}}
 					value={title}
-					variant="filled"
-                />
-                <TextField
-                    fullWidth
-                    label="What happened today?"
-                    multiline
-                    minRows={10}
+				/>
+				<TextField
+					fullWidth
+					label="What happened today?"
+					multiline
+					minRows={10}
 					name="body"
 					onChange={onInputChange}
 					value={body}
-                    variant="filled"
-                />
-            </Grid>
-            <ImageGallery/>
-			{
-				savedMessageAlert 
-				&& 
-				<Snackbar
-					autoHideDuration={3000}
-					anchorOrigin={{
-						vertical: "bottom",
-						horizontal: "center"
-					}}
-					open={savedMessageAlert}
-					onClose={() => setSavedMessageAlert(false)}
-				>
-					<Alert
-						variant="filled"
-					>{savedMessage}</Alert>
-				</Snackbar>
-			}
-        </>
+				/>
+			</Stack>
+		<ImageGallery/>
+		{
+			savedMessageAlert 
+			&& 
+			<Snackbar
+				autoHideDuration={3000}
+				anchorOrigin={{
+					vertical: "bottom",
+					horizontal: "center"
+				}}
+				open={savedMessageAlert}
+				onClose={() => setSavedMessageAlert(false)}
+			>
+				<Alert
+					variant="filled"
+				>{savedMessage}</Alert>
+			</Snackbar>
+		}
+		</Grid>
     );
 }
 

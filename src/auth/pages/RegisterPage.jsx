@@ -9,8 +9,8 @@ import {
     Typography 
 } from "@mui/material";
 import { useForm } from "../../hooks/useForm";
-import AuthLayout from "../layout/AuthLayout";
 import { startRegisterUser } from "../../redux/auth/thunks";
+import AuthLayout from "../layout/AuthLayout";
 
 // Defining initialForm
 const initialForm = {
@@ -21,9 +21,9 @@ const initialForm = {
 
 // Properties with their respective validation and error message
 const formValidations = {
-    displayName: [value => value.length >= 6, "Debe tener más de 6 caracteres."],
-    email: [value => value.includes("@") && value.includes(".com"), "Ingresa un mail válido."],
-    password: [value => value.length >= 6, "Debe tener más de 6 caracteres."],
+    displayName: [value => value.length >= 6, "Must be more than 6 characters."],
+    email: [value => value.includes("@") && value.includes(".com"), "Enter a valid email."],
+    password: [value => value.length >= 6, "Must be more than 6 characters."],
 }
 
 const RegisterPage = () => {
@@ -62,12 +62,11 @@ const RegisterPage = () => {
                 <Stack spacing={2}>
                     <TextField
                         error={!!displayNameValid && formSubmitted}
-                        helperText={displayNameValid}
+						helperText={displayNameValid}
                         label="Full Name"
                         name="displayName"
                         onChange={onInputChange}
                         value={displayName}
-                        variant="filled"
                     />
                     <TextField
                         error={!!emailValid && formSubmitted}
@@ -76,7 +75,6 @@ const RegisterPage = () => {
                         name="email"
                         onChange={onInputChange}
                         value={email}
-                        variant="filled"
                     />
                     <TextField
                         error={!!passwordValid && formSubmitted}
@@ -86,7 +84,6 @@ const RegisterPage = () => {
                         onChange={onInputChange}
                         type="password"
                         value={password}
-                        variant="filled"
                     />
                 </Stack>
                 <Stack

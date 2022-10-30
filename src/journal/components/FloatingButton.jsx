@@ -1,8 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import { 
     IconButton 
 } from "@mui/material";
 import { AddOutlined } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
 import { startCreateNote } from "../../redux/journal/thunks";
 
 const FloatingButton = () => {
@@ -18,7 +18,6 @@ const FloatingButton = () => {
         <IconButton
 			disabled={isSaving}
 			onClick={createNote}
-            size="large"
             sx={{
                 color: "white",
                 backgroundColor: "primary.main",

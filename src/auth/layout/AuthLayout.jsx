@@ -1,6 +1,6 @@
 import { 
-	Box, 
 	Grid, 
+	Stack,
 	Typography 
 } from "@mui/material";
 
@@ -12,26 +12,22 @@ const AuthLayout = ({ children, title }) => {
             direction="column"
             justifyContent="center"
             height="100vh"
-            sx={{
-                backgroundColor: "primary.main"
-            }}
         >
-            <Box
+            <Stack
+				boxShadow="0px 10px 30px 0px rgba(0,0,0,0.1)"
 				className="animate__animated animate__fadeIn animate__faster"
-                sx={{
-                    padding: "1rem",
-                    backgroundColor: "white",
-                    width: "25rem"
-                }}
+				p={4}
+				width="25rem"
             >
-                <Typography 
-                    variant="h5"
-                    sx={{
-                        pb: "1rem"
-                    }}
-                >{title}</Typography>
-                { children }
-            </Box>
+				<Typography 
+					align="center"
+					pb={2}
+					variant="h6"
+				>{title}</Typography>
+				<Stack>
+                	{ children }
+				</Stack>
+            </Stack>
         </Grid>
     );
 }
