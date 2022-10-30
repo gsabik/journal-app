@@ -1,16 +1,15 @@
 import { useDispatch } from "react-redux";
 import { 
 	AppBar, 
-    Button, 
     IconButton, 
     Stack, 
     Toolbar, 
     Typography 
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import { LogoutOutlined } from "@mui/icons-material";
 import { startLogout } from "../../redux/auth/thunks";
 
-const NavBar = ({ drawerWidth }) => {
+const NavBar = () => {
 
     const dispatch = useDispatch();
 
@@ -21,37 +20,26 @@ const NavBar = ({ drawerWidth }) => {
     return (
         <AppBar
             position="fixed"
-            sx={{
-                width: {sm: `calc(100% - ${drawerWidth}px)`},
-                ml: {sm: `${drawerWidth}px)`}
-            }}
+			sx={{
+				backgroundColor: ""
+			}}
         >
             <Toolbar
                 sx={{
                     justifyContent: "space-between"
                 }}
             >
-                <Stack
-                    alignItems="center"
-                    direction="row"
-                    spacing={2}
-                >
-                    <IconButton
-                        color="inherit"
-                        sx={{
-                            display: {sm: "none"}
-                        }}
-                    >
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6">Journal App</Typography>
-                </Stack>
+				<Typography variant="h6">Journal App</Typography>
                 <Stack>
-                    <Button
-                        color="error"
-                        onClick={onLogout}
-                        variant="outlined"
-                    >Logout</Button>
+                    <IconButton
+						onClick={onLogout}
+					>
+						<LogoutOutlined
+							sx={{
+								color: "white",
+							}}
+						/>
+					</IconButton>
                 </Stack>
             </Toolbar>
         </AppBar>

@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, Button, Stack, TextField, Typography } from "@mui/material";
+import { Alert, Button, IconButton, Stack, TextField, Typography } from "@mui/material";
+import { Google } from "@mui/icons-material";
 import { startGoogleSignIn, startLoginWithUser } from "../../redux/auth/thunks";
 import { useForm } from "../../hooks/useForm";
 import AuthLayout from "../layout/AuthLayout";
@@ -70,6 +71,7 @@ const LoginPage = () => {
                         variant="contained"
                     >Login</Button>
                     <Button
+						startIcon={<Google/>}
                         disabled={isAuthenticating}
                         fullWidth
                         onClick={onGoogleSignIn}

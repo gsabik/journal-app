@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
 	Alert,
@@ -41,11 +41,6 @@ const NoteView = () => {
 	// Ref to my input type file
 	const fileInputRef = useRef();
 
-	// const dateString = useMemo(() => {
-	// 	const newDate = new Date(date);
-	// 	return newDate.toUTCString();
-	// }, [date]);
-
 	// If modify a note, render my component
 	useEffect(() => {
 		dispatch(readNote(formState));
@@ -62,13 +57,13 @@ const NoteView = () => {
 		<Grid
 			container
 			direction="column"
+			mt={4}
 		>
 			<Stack
 				direction="row"
 				justifyContent="space-between"
-				pb={2}
 			>
-				<Typography variant="h5">{date}</Typography>
+				<Typography variant="h6">{date}</Typography>
 				<Stack
 					direction="row"
 				>
@@ -100,16 +95,13 @@ const NoteView = () => {
 				</Stack>
 			</Stack>
 			<Stack
-				pb={2}
+				spacing={2}
 			>
 				<TextField
 					fullWidth
 					label="Title"
 					name="title"
 					onChange={onInputChange}
-					sx={{
-						mb: 2
-					}}
 					value={title}
 				/>
 				<TextField
@@ -122,7 +114,7 @@ const NoteView = () => {
 					value={body}
 				/>
 			</Stack>
-		<ImageGallery/>
+			<ImageGallery/>
 		{
 			savedMessageAlert 
 			&& 

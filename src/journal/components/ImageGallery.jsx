@@ -10,11 +10,11 @@ const ImageGallery = () => {
 
 	return (
 			<Box sx={{
-				pt: 4,
-				height: 450, 
-				overflowY: "scroll",
-				width: "full", 
-			}}>
+					pt: 4,
+					height: 450, 
+					overflowY: "scroll",
+				}}
+			>
 				<ImageList variant="masonry" cols={6}>
 					{
 						imageUrls?.map((image) => (
