@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { 
-    IconButton 
-} from "@mui/material";
-import { AddOutlined } from "@mui/icons-material";
 import { startCreateNote } from "../../redux/journal/thunks";
+import { IconButton } from "@mui/material";
+import { AddOutlined } from "@mui/icons-material";
 
 const FloatingButton = () => {
 	const { isSaving } = useSelector(state => state.journal);
@@ -19,12 +17,12 @@ const FloatingButton = () => {
 			disabled={isSaving}
 			onClick={createNote}
             sx={{
-                color: "white",
+                bottom: 50,
                 backgroundColor: "primary.main",
+                color: "white",
                 ":hover": {backgroundColor: "secondary.main" , opacity: 0.9},
                 position: "fixed",
-                bottom: 50,
-                right: 50
+                right: 75
             }}
         >
             <AddOutlined/>

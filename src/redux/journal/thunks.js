@@ -6,7 +6,6 @@ import { fileUpload } from "../../helpers/fileUpload";
 
 export const startCreateNote = () => {
 	return async(dispatch, getState) => {
-
 		dispatch(savingNote());
 
 		// getState return the current state tree of your application
@@ -29,25 +28,22 @@ export const startCreateNote = () => {
 		newNote.id = newDoc.id;
 
 		dispatch(addNote(newNote));
-
 		dispatch(readNote(newNote));
-	}
+	};
 }
 
 export const startLoadingNotes = () => {
 	return async(dispatch, getState) => {
-
 		// getState return the current state tree of your application
 		const { uid } = getState().auth;
 		const notes = await loadNotes(uid);
 
 		dispatch(setNotes(notes));
-	}
+	};
 }
 
 export const startOnSaveNote = () => {
 	return async(dispatch, getState) => {
-
 		dispatch(savingNote());
 
 		// getState return the current state tree of your application
@@ -65,12 +61,11 @@ export const startOnSaveNote = () => {
 
 		// Update my local notes, not my firebase notes
 		dispatch(updateNote(activeNote));
-	}
+	};
 }
 
 export const startUploadingFiles = (files = []) => {
 	return async(dispatch) => {
-
 		dispatch(savingNote());
 
 		const fileUploadPromises = [];
@@ -84,7 +79,7 @@ export const startUploadingFiles = (files = []) => {
 		const imagesUrls = await Promise.all(fileUploadPromises);
 
 		dispatch(setImagesToActiveNote(imagesUrls));
-	}
+	};
 }
 
 export const startDeleteNote = () => {
@@ -98,5 +93,5 @@ export const startDeleteNote = () => {
 		await deleteDoc(referenceCollection);
 
 		dispatch(deleteNote(activeNote.id));
-	}
+	};
 }

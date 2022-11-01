@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { startRegisterUser } from "../../redux/auth/thunks";
 import {
     Alert, 
     Button, 
@@ -9,10 +10,8 @@ import {
     Typography 
 } from "@mui/material";
 import { useForm } from "../../hooks/useForm";
-import { startRegisterUser } from "../../redux/auth/thunks";
 import AuthLayout from "../layout/AuthLayout";
 
-// Defining initialForm
 const initialForm = {
     displayName:  "",
     email: "",
@@ -29,14 +28,12 @@ const formValidations = {
 const RegisterPage = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const dispatch = useDispatch();
-
     const { status, errorMessage } = useSelector(state =>  state.auth);
 
-    const isAuthenticating = useMemo(() => status === "checking", [status]);
-
+    const dispatch = useDispatch();
+	
     const { 
-        displayName, 
+		displayName, 
         email, 
         password, 
         onInputChange, 
@@ -46,19 +43,21 @@ const RegisterPage = () => {
         emailValid,
         passwordValid 
     } = useForm(initialForm, formValidations);
-
+	
     const onSubmit = e => {
-        e.preventDefault();
+		e.preventDefault();
         setFormSubmitted(true);
         if (!isFormValid) return;
         dispatch(startRegisterUser(formState));
     }
+	
+	const isAuthenticating = useMemo(() => status === "checking", [status]);
 
     return (
-        <AuthLayout title="Create account">
+		<AuthLayout title="Create account">
             <form 
 				onSubmit={onSubmit}
-			>
+				>
                 <Stack spacing={2}>
                     <TextField
                         error={!!displayNameValid && formSubmitted}
@@ -101,15 +100,15 @@ const RegisterPage = () => {
                 </Stack>
             </form>
             <Stack
-                mt={2}
                 direction="row"
                 justifyContent="space-around"
+                mt={2}
             >
                 <Typography color="gray">Do you have account?</Typography>
                 <Link to="/auth/login">Sign in</Link>
             </Stack>
         </AuthLayout>
-    )
+    );
 }
 
 export default RegisterPage

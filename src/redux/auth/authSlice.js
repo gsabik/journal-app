@@ -7,7 +7,7 @@ const initialState = {
     displayName: null,
     photoURL: null, 
     errorMessage: null
-}
+};
 
 export const authSlice = createSlice({
     name: "auth",

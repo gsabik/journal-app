@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { firebaseAuth } from "../firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 import { login, logout } from "../redux/auth/authSlice";
-import { firebaseAuth } from "../firebase/config";
 import { startLoadingNotes } from "../redux/journal/thunks";
 
 export const useCheckAuth = () => {

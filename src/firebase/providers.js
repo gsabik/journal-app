@@ -1,3 +1,4 @@
+import { firebaseAuth } from "./config";
 import { 
     createUserWithEmailAndPassword,
     GoogleAuthProvider, 
@@ -5,7 +6,6 @@ import {
     signInWithEmailAndPassword,
     updateProfile
 } from "firebase/auth";
-import { firebaseAuth } from "./config";
 
 // Create an instance of the Google provider object
 const googleProvider = new GoogleAuthProvider();
@@ -22,7 +22,7 @@ export const signInWithGoogle = async() => {
             email, 
             photoURL, 
             uid
-        }
+        };
         
     } catch (error) {
         const errorMessage = error.message;
@@ -30,7 +30,7 @@ export const signInWithGoogle = async() => {
         return {
             ok: false,
             errorMessage
-        }
+        };
 
     }
 
@@ -49,7 +49,7 @@ export const registerUser = async({ displayName, email, password }) => {
             photoURL, 
             email, 
             displayName
-        }
+        };
 
     } catch (error) {
         const errorMessage = error.message;
@@ -57,7 +57,7 @@ export const registerUser = async({ displayName, email, password }) => {
         return {
             ok: false,
             errorMessage
-        }
+        };
     }
 }
 
@@ -71,7 +71,7 @@ export const loginWithUser = async({ email, password }) => {
             uid,
             photoURL, 
             displayName
-        }
+        };
 
     } catch (error) {
         const errorMessage = error.message;
@@ -79,7 +79,7 @@ export const loginWithUser = async({ email, password }) => {
         return {
             ok: false,
             errorMessage
-        }
+        };
     }
 }
 

@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { readNote } from "../../redux/journal/journalSlice";
+import { startOnSaveNote, startUploadingFiles, startDeleteNote } from "../../redux/journal/thunks";
 import { 
 	Alert,
 	Grid, 
@@ -9,10 +11,12 @@ import {
     TextField, 
     Typography, 
 } from "@mui/material";
-import { Delete, Save, Upload } from "@mui/icons-material";
+import { 
+	DeleteOutlined, 
+	SaveOutlined, 
+	FileUploadOutlined 
+} from "@mui/icons-material";
 import { useForm } from "../../hooks/useForm";
-import { readNote } from "../../redux/journal/journalSlice";
-import { startOnSaveNote, startUploadingFiles, startDeleteNote } from "../../redux/journal/thunks";
 import ImageGallery from "../components/ImageGallery";
 
 const NoteView = () => {
@@ -30,7 +34,6 @@ const NoteView = () => {
 
 	const onFileInputChange = ({ target }) => {
 		if (target.files === 0) return;
-
 		dispatch(startUploadingFiles(target.files));
 	}
 
@@ -60,37 +63,39 @@ const NoteView = () => {
 			mt={4}
 		>
 			<Stack
+				className="animate__animated animate__fadeIn animate__faster"
 				direction="row"
 				justifyContent="space-between"
+				pb={2}
 			>
 				<Typography variant="h6">{date}</Typography>
-				<Stack
-					direction="row"
-				>
+				<Stack direction="row">
 					<input
 						multiple
 						onChange={onFileInputChange}
-						type="file"
 						ref={fileInputRef}
 						style={{
 							display: "none"
 						}}
+						type="file"
 					/>
 					<IconButton
+						disabled={isSaving}
 						onClick={() => fileInputRef.current.click()}
 					>
-						<Upload/>
+						<FileUploadOutlined/>
 					</IconButton>
 					<IconButton
+						disabled={isSaving}
 						onClick={onDeleteNote}
 					>
-						<Delete/>
+						<DeleteOutlined/>
 					</IconButton>
 					<IconButton
 						disabled={isSaving}
 						onClick={onSaveNote}
 					>
-						<Save/>
+						<SaveOutlined/>
 					</IconButton>
 				</Stack>
 			</Stack>
@@ -114,24 +119,28 @@ const NoteView = () => {
 					value={body}
 				/>
 			</Stack>
+			<Stack py={2}>
+				<Typography variant="body2" fontWeight={500}>*Before leaving the application or creating, modifying or selecting another note, remember to save it.</Typography>
+			</Stack>
 			<ImageGallery/>
-		{
-			savedMessageAlert 
-			&& 
-			<Snackbar
-				autoHideDuration={3000}
-				anchorOrigin={{
-					vertical: "bottom",
-					horizontal: "center"
-				}}
-				open={savedMessageAlert}
-				onClose={() => setSavedMessageAlert(false)}
-			>
-				<Alert
-					variant="filled"
-				>{savedMessage}</Alert>
-			</Snackbar>
-		}
+			{
+				savedMessageAlert 
+				&& 
+				<Snackbar
+					autoHideDuration={3000}
+					anchorOrigin={{
+						vertical: "bottom",
+						horizontal: "center"
+					}}
+					open={savedMessageAlert}
+					onClose={() => setSavedMessageAlert(false)}
+				>
+					<Alert
+						severity="info"
+						variant="filled"
+					>{savedMessage}</Alert>
+				</Snackbar>
+			}
 		</Grid>
     );
 }

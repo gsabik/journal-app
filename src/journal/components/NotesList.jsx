@@ -1,5 +1,10 @@
 import { useSelector } from "react-redux";
-import { Box, Divider, Stack, Typography} from "@mui/material";
+import { 
+	Box, 
+	Divider, 
+	Stack, 
+	Typography
+} from "@mui/material";
 import NoteItem from "./NoteItem";
 
 const NotesList = () => {
@@ -7,9 +12,7 @@ const NotesList = () => {
 
 	return (
 		<Box>
-			<Typography 
-				variant="h5"
-			>Recent notes</Typography>
+			<Typography variant="h5">Recent notes</Typography>
 			<Stack
 				direction="row"
 				height="2rem"

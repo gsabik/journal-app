@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useCheckAuth } from "../hooks/useCheckAuth";
 import AuthRoutes from "../auth/routes/AuthRoutes";
 import JournalRoutes from "../journal/routes/JournalRoutes";
+import { useCheckAuth } from "../hooks/useCheckAuth";
 import Loader from "../ui/components/Loader";
 
 const AppRouter = () => {
@@ -16,10 +16,11 @@ const AppRouter = () => {
     return (
        <Routes>
             {
-                (status === "authenticated")
-                ? <Route path="/*" element={<JournalRoutes/>}/>
-                : <Route path="auth/*" element={<AuthRoutes/>}/>
-
+                status === "authenticated"
+                ? 
+				<Route path="/*" element={<JournalRoutes/>}/>
+                : 
+				<Route path="auth/*" element={<AuthRoutes/>}/>
             }
             <Route path="/*" element={<Navigate to="auth/login"/>}/>
        </Routes>

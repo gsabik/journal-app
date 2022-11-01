@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { startLogout } from "../../redux/auth/thunks";
 import { 
 	AppBar, 
     IconButton, 
@@ -7,10 +8,8 @@ import {
     Typography 
 } from "@mui/material";
 import { LogoutOutlined } from "@mui/icons-material";
-import { startLogout } from "../../redux/auth/thunks";
 
 const NavBar = () => {
-
     const dispatch = useDispatch();
 
     const onLogout = () => {
@@ -18,12 +17,7 @@ const NavBar = () => {
     }
 
     return (
-        <AppBar
-            position="fixed"
-			sx={{
-				backgroundColor: ""
-			}}
-        >
+        <AppBar position="fixed">
             <Toolbar
                 sx={{
                     justifyContent: "space-between"
@@ -43,7 +37,7 @@ const NavBar = () => {
                 </Stack>
             </Toolbar>
         </AppBar>
-    )
+    );
 }
 
 export default NavBar

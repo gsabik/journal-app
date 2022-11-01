@@ -9,13 +9,10 @@ const NothingSelectedView = () => {
             alignItems="center"
             container
             direction="column"
+			height="85vh"
             justifyContent="center"
-            height="calc(100vh - 100px)"
         >
-			<Typography 
-				pt="2px"
-				variant="h5" 
-			>Select or create a note</Typography>
+			<Typography variant="h6">Select or create a note</Typography>
         </Grid>
     );
 }

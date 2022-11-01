@@ -1,9 +1,15 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, Button, IconButton, Stack, TextField, Typography } from "@mui/material";
-import { Google } from "@mui/icons-material";
 import { startGoogleSignIn, startLoginWithUser } from "../../redux/auth/thunks";
+import { 
+	Alert, 
+	Button, 
+	Stack, 
+	TextField, 
+	Typography 
+} from "@mui/material";
+import { Google } from "@mui/icons-material";
 import { useForm } from "../../hooks/useForm";
 import AuthLayout from "../layout/AuthLayout";
 
@@ -17,9 +23,9 @@ const LoginPage = () => {
 
     const { status, errorMessage } = useSelector(state => state.auth);
 
-    const isAuthenticating = useMemo(() => status === "checking", [status]);
-
     const dispatch = useDispatch();
+
+    const isAuthenticating = useMemo(() => status === "checking", [status]);
 
     const onSubmit = e => {
         e.preventDefault();
@@ -36,8 +42,8 @@ const LoginPage = () => {
 				onSubmit={onSubmit}
 			>
                 <Stack
-                    mb={2}
                     direction="column"
+                    mb={2}
                     spacing={2}
                 >
                     <TextField

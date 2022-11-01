@@ -1,4 +1,7 @@
-import { CircularProgress, Grid, Stack } from "@mui/material";
+import { 
+	CircularProgress, 
+	Grid, 
+	Stack } from "@mui/material";
 
 const Loader = () => {
     return (
@@ -8,10 +11,6 @@ const Loader = () => {
             direction="column"
             height="100vh"
             justifyContent="center"
-            // sx={{
-            //     backgroundColor: "primary.main"
-            // }}
-            
         >
             <Stack
                 direction="column"
@@ -20,7 +19,7 @@ const Loader = () => {
                 <CircularProgress/>
             </Stack>
         </Grid>
-    )
+	);
 }
 
 export default Loader

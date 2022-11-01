@@ -1,9 +1,10 @@
-import { 
-    Box, Divider, Toolbar 
-} from "@mui/material";
 import { useSelector } from "react-redux";
-import NotesList from "../components/ListNotes";
+import { 
+    Box,
+	Toolbar 
+} from "@mui/material";
 import NavBar from "../components/NavBar";
+import NotesList from "../components/NotesList";
 
 const JournalLayout = ({ children }) => {
 	const { notes } = useSelector(state => state.journal);
@@ -12,7 +13,8 @@ const JournalLayout = ({ children }) => {
         <Box
 			className="animate__animated animate__fadeIn animate__faster" 
 			sx={{
-            	display: "flex"
+            	display: "flex",
+				flexDirection:"column"
         	}}
 		>
             <NavBar/>
@@ -20,17 +22,14 @@ const JournalLayout = ({ children }) => {
                 component="main" 
                 sx={{
 					flexGrow: 1,
-                    margin: 2,
+                    margin: 4,
                 }}
-				>
+			>
                 <Toolbar/>
 				{
-					notes.length === 0
-					?
-					""
-					:
+					notes.length >= 1
+					&&
 					<NotesList/>
-
 				}
                 {children}
             </Box>

@@ -10,8 +10,8 @@ const AuthLayout = ({ children, title }) => {
             alignItems="center"
             container
             direction="column"
-            justifyContent="center"
             height="100vh"
+            justifyContent="center"
         >
             <Stack
 				boxShadow="0px 10px 30px 0px rgba(0,0,0,0.1)"
@@ -25,7 +25,7 @@ const AuthLayout = ({ children, title }) => {
 					variant="h6"
 				>{title}</Typography>
 				<Stack>
-                	{ children }
+                	{children}
 				</Stack>
             </Stack>
         </Grid>

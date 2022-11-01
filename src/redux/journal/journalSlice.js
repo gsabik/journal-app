@@ -5,7 +5,7 @@ const initialState = {
 	savedMessage: "",
 	notes: [],
 	active: null
-}
+};
 
 export const journalSlice = createSlice({
 	name: "journal",
@@ -49,9 +49,7 @@ export const journalSlice = createSlice({
 
 				return note;
 			});
-
 			state.savedMessage = `${action.payload.title} successfully updated!`
-
 		}
 	}
 });

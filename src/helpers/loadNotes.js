@@ -8,7 +8,6 @@ export const loadNotes = async(uid) => {
 	// Create an empty array to push the information obtained from my data() function
 	const notes = [];
 
-	//
 	docs.forEach(doc => {
 		notes.push({id: doc.id, ...doc.data()});
 	});
